@@ -24,6 +24,7 @@ Histogram of total number of steps taken on each day
 
 ```{r}
 sum_steps<-aggregate(activity$steps,by=list(activity$date),FUN=sum,na.rm=TRUE) 
+png(file = "Plot1.png", width = 480, height = 480, units = "px")
 hist(sum_steps$x, 
      breaks=seq(from=0, to=25000, by=2500),
      col="yellow", 
@@ -50,6 +51,7 @@ Time series plot of the average number of steps taken
 avg_steps<-aggregate(activity$steps,by=list(activity$interval),FUN=mean,na.rm=TRUE) 
 colnames(avg_steps)<-c("interval","steps")
 library(ggplot2)
+png(file = "Plot2.png", width = 480, height = 480, units = "px")
 ggplot(aes(x=interval,y=steps),data=avg_steps)+geom_line()
 
 ```
@@ -90,7 +92,7 @@ Histogram of total number of steps taken on each day (replaced NA values)
 ```{r}
 
 sum_steps<-aggregate(activity$steps,by=list(activity$date),FUN=sum,na.rm=TRUE) 
-
+png(file = "Plot3.png", width = 480, height = 480, units = "px")
 hist(sum_steps$x, 
       breaks=seq(from=0, to=25000, by=2500),
       col="yellow", 
@@ -138,6 +140,7 @@ colnames(avg_steps)<-c("interval","day_type","steps")
 # Create panel plot between average steps and interval seperated by day type
 
 ```{r}
+png(file = "Plot4.png", width = 480, height = 480, units = "px")
 ggplot(aes(x=interval,y=steps),data=avg_steps)+geom_line()+facet_wrap(~avg_steps$day_type)
 
 ```
